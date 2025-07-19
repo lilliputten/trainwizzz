@@ -27,9 +27,11 @@ function Title({ goBack }: Pick<TChildProps, 'goBack'>) {
     <div
       className={cn(
         isDev && '__EditTopicCard_Title', // DEBUG
-        'grid flex-1 grid-cols-[2em_1fr] items-center gap-2',
+        'flex flex-1 items-center gap-2',
+        // 'grid grid-cols-[2em_1fr]',
       )}
     >
+      {/*
       <Button
         variant="ghost"
         size="icon"
@@ -40,6 +42,7 @@ function Title({ goBack }: Pick<TChildProps, 'goBack'>) {
       >
         <Icons.arrowLeft className="size-4" />
       </Button>
+      */}
       <CardTitle className="flex items-center">
         <span>Edit topic</span>
       </CardTitle>

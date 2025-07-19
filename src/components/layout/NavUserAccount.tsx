@@ -24,6 +24,7 @@ export function NavUserAccount(props: TNavUserAccountProps) {
   // const t = useTranslations('NavUserAccount');
 
   const [open, setOpen] = React.useState(false);
+  const closeOuterMenu = React.useCallback(() => setOpen(false), []);
 
   if (!user) {
     return <div className="size-8 animate-pulse rounded-full border bg-muted" />;
@@ -68,7 +69,12 @@ export function NavUserAccount(props: TNavUserAccountProps) {
         )}
       </DropdownMenuTrigger>
 
-      <NavUserBlock align="end" onPrimary={onPrimary} onSidebar={onSidebar} />
+      <NavUserBlock
+        align="end"
+        onPrimary={onPrimary}
+        onSidebar={onSidebar}
+        closeOuterMenu={closeOuterMenu}
+      />
     </DropdownMenu>
   );
 }

@@ -20,6 +20,7 @@ interface TNavUserBlockProps extends TPropsWithClassName {
   onPrimary?: boolean;
   onSidebar?: boolean;
   align?: 'center' | 'end' | 'start';
+  closeOuterMenu?: () => void;
 }
 
 function SidebarWrapper(props: TNavUserBlockProps & { children: React.ReactNode }) {
@@ -61,6 +62,7 @@ export function NavUserBlock(props: TNavUserBlockProps) {
     onSidebar,
     className,
     align,
+    closeOuterMenu,
   } = props;
   const { data: session } = useSession();
   const user = session?.user;
@@ -123,7 +125,6 @@ export function NavUserBlock(props: TNavUserBlockProps) {
         <Link
           href="/admin"
           className={cn(
-            // prettier-ignore
             'flex items-center space-x-2.5',
             'disabled', // UNUSED
           )}
@@ -140,7 +141,6 @@ export function NavUserBlock(props: TNavUserBlockProps) {
             <Link
               href="/" // dashboard
               className={cn(
-                // prettier-ignore
                 'flex items-center space-x-2.5',
                 'disabled', // UNUSED
               )}
@@ -154,7 +154,6 @@ export function NavUserBlock(props: TNavUserBlockProps) {
             <Link
               href="/" // "/dashboard/settings"
               className={cn(
-                // prettier-ignore
                 'flex items-center space-x-2.5',
                 'disabled', // UNUSED
               )}
@@ -172,6 +171,7 @@ export function NavUserBlock(props: TNavUserBlockProps) {
         className="cursor-pointer"
         onSelect={(event) => {
           event.preventDefault();
+          closeOuterMenu?.();
           signOut({
             callbackUrl: `${window.location.origin}/`,
           });
